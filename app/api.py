@@ -3,13 +3,13 @@ from app.cupones import get_final_price
 
 app = Flask(__name__)
 
-@app.route('/api/price', methods=['POST'])
-def calculate():
+@app.route('/price', methods=['POST'])
+def get_price():
     data = request.get_json()
-    base_price = data.get('base_price')
+    price = data.get('price')
     coupon = data.get('coupon')
-    tax_rate = data.get('tax_rate', 0.19)
+    tax_rate = data.get('impuesto', 0.19)
 
-    final = get_final_price(base_price, coupon, tax_rate)
-    return jsonify({"final_price": final})
+    final_price = get_final_price(price, coupon, tax_rate)
+    return jsonify({"final_price": final_price})
 
