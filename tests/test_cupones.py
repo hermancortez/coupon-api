@@ -11,3 +11,6 @@ def test_descuento_welcome():
 
 def test_final_price_with_tax():
     assert get_final_price(100, "SALES10") == 107.1
+
+def test_ivnalid_coupon():
+    assert apply_coupon(990, "INVALID") == 990
